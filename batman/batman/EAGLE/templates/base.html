@@ -262,6 +262,9 @@
                 <a class="nav-link" href="#" onclick="showSection('messages')">
                     <i class="fas fa-comments me-1"></i> Chat
                 </a>
+                <a class="nav-link" href="#" onclick="showSection('telegram-settings')">
+                    <i class="fab fa-telegram me-1"></i> Chat ID
+                </a>
                 {% if session.role == 'Admin' %}
                 <a class="nav-link" href="#" onclick="showSection('admin')">
                     <i class="fas fa-cog me-1"></i> Admin
@@ -287,6 +290,9 @@
         </a>
         <a href="#" onclick="showSection('messages'); toggleSidebar();">
             <i class="fas fa-comments me-2"></i> Chat
+        </a>
+        <a href="#" onclick="showSection('telegram-settings'); toggleSidebar();">
+            <i class="fab fa-telegram me-2"></i> Chat ID Settings
         </a>
         {% if session.role == 'Admin' %}
         <a href="#" onclick="showSection('admin'); toggleSidebar();">

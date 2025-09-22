@@ -913,6 +913,55 @@ def send_telegram_setup():
     except Exception as e:
         return jsonify({'success': False, 'message': f'Error: {str(e)}'})
 
+@app.route('/api/chat_id', methods=['GET'])
+def get_chat_id():
+    """Get current user's Telegram chat ID"""
+    if 'user_id' not in session:
+        return jsonify({'error': 'Not logged in'}), 401
+    
+    try:
+        db = Database()
+        conn = db.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT telegram_chat_id FROM users WHERE id = ?", (session['user_id'],))
+        result = cursor.fetchone()
+        conn.close()
+        
+        chat_id = result[0] if result and result[0] else None
+        return jsonify({'success': True, 'chat_id': chat_id})
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Error: {str(e)}'})
+
+@app.route('/api/chat_id', methods=['POST'])
+def update_chat_id():
+    """Update current user's Telegram chat ID"""
+    if 'user_id' not in session:
+        return jsonify({'error': 'Not logged in'}), 401
+    
+    try:
+        data = request.get_json()
+        chat_id = data.get('chat_id', '').strip()
+        
+        if not chat_id:
+            return jsonify({'success': False, 'message': 'Chat ID is required'})
+        
+        # Basic validation - should be a number
+        if not chat_id.isdigit():
+            return jsonify({'success': False, 'message': 'Chat ID should only contain numbers'})
+        
+        db = Database()
+        conn = db.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE users SET telegram_chat_id = ? WHERE id = ?", (chat_id, session['user_id']))
+        conn.commit()
+        conn.close()
+        
+        return jsonify({'success': True, 'message': 'Chat ID updated successfully'})
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Error: {str(e)}'})
+
 @socketio.on('join_user_room')
 def on_join_user_room():
     if 'user_id' in session:
