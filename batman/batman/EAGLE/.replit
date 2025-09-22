@@ -1,0 +1,46 @@
+modules = ["python-3.11"]
+
+[workflows]
+runButton = "Task Management"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Eagle Task Management"
+
+[[workflows.workflow]]
+name = "Eagle Task Management"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd \"Eagle (2)/Eagle\" && python Eagle/unified_server.py"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow]]
+name = "Task Management"
+author = 47614809
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python web_app.py"
+
+[nix]
+channel = "stable-25_05"
+packages = ["cargo", "espeak-ng", "libiconv", "libxcrypt", "openssl", "pkg-config", "rustc"]
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 8000
+externalPort = 80

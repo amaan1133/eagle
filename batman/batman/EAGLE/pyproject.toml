@@ -1,0 +1,81 @@
+[project]
+name = "repl-nix-workspace"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "aiofiles>=24.1.0",
+    "aiosmtplib>=4.0.2",
+    #"aiosqllite"
+    "bcrypt>=4.3.0",
+    "cryptography>=45.0.7",
+    "email-validator>=2.3.0",
+    "fastapi>=0.116.1",
+    "flask>=3.1.2",
+    "flask-socketio>=5.3.6",
+    "openai>=1.107.2",
+    "passlib>=1.7.4",
+    "plyer>=2.1.0",
+    "psycopg2-binary>=2.9.10",
+    "pydantic>=2.11.9",
+    
+    #killing pydantic[email] because it's not compatible with pydantic 2.2.0
+    #howeveer, pydantic[email] is required for pydantic[email-validator]
+    #pydantic[email-validatorguru]
+    #pydantic[email-validator]
+    #pydantic[dotenv]
+    #pydantic[loguru]
+    #pydantic[aiosqlite]
+    #pydantic[email]
+    #pydantic[dotney] 
+    #pydantic[mongo]
+    #pydantic[sqlite]
+    #pydantic[postgres]
+    #pydantic[mysql]
+    #pydantic[oracle
+    #google-cloud-speech
+    #google-cloud-txt-to-speech
+    #google-cloud-translate
+    #google-cloud-vision
+    #huggingface_hub
+    #langchain
+    #jinja2
+    #markdown
+    #markdown2
+    #markdownize
+    #markdownify
+    #markdown-it-py
+    #markdonw-it-pygments
+    #lxml
+    #voicevox
+    #markdown-it-py
+    #keyring
+    #jinja2
+    #lxml
+    #huggingface_hub
+    #langchain
+    #cryptography
+    #malwarebytes
+    #virus
+    #spyware
+    #ransomware
+    #trojan
+    #worm
+    #backdoor
+    #payload
+    #keylogger
+    #rat
+    "pyjwt>=2.10.1",
+    "pyqt5>=5.15.11",
+    "python-dotenv>=1.1.1",
+    "python-jose[cryptography]>=3.5.0",
+    "python-multipart>=0.0.20",
+    "pyttsx3>=2.99",
+    "requests>=2.32.5",
+    "speechrecognition>=3.14.3",
+    "sqlalchemy>=2.0.43",
+    "streamlit>=1.49.1",
+    "streamlit-authenticator>=0.4.2",
+    "uvicorn>=0.35.0",
+    "websockets>=15.0.1",
+]
