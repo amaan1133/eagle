@@ -53,8 +53,10 @@ def send_telegram_notification(user_id, message):
             print(f"⚠️ No Chat ID configured for user: {username}. User needs to set up Chat ID in settings.")
             return False
         
-        bot_token = "7653297508:AAE_sfu893LJ-D5Z5xtr_sjy-XEJvvf7haQ"
-        bot_username = "taskmanager_eagle_bot"
+        # Get bot credentials from environment variables
+        import os
+        bot_token = os.getenv('TELEGRAM_BOT_TOKEN', "7653297508:AAE_sfu893LJ-D5Z5xtr_sjy-XEJvvf7haQ")
+        bot_username = os.getenv('TELEGRAM_BOT_USERNAME', "taskmanager_eagle_bot")
 
         url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
         
@@ -881,8 +883,10 @@ def send_telegram_setup():
             return jsonify({'success': False, 'message': 'Mobile number not found'})
         
         mobile_number, username = result
-        bot_token = "7653297508:AAE_sfu893LJ-D5Z5xtr_sjy-XEJvvf7haQ"
-        bot_username = "taskmanager_eagle_bot"
+        # Get bot credentials from environment variables
+        import os
+        bot_token = os.getenv('TELEGRAM_BOT_TOKEN', "7653297508:AAE_sfu893LJ-D5Z5xtr_sjy-XEJvvf7haQ")
+        bot_username = os.getenv('TELEGRAM_BOT_USERNAME', "taskmanager_eagle_bot")
         
         # Send setup message
         send_bot_setup_message(mobile_number, username, bot_token, bot_username)
