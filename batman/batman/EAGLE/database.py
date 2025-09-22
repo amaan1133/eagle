@@ -230,15 +230,15 @@ class Database:
         return companies
 
     # User methods
-    def create_user(self, username: str, password: str, role: str, company_id: int, mobile_number: str = None) -> bool:
+    def create_user(self, username: str, password: str, role: str, company_id: int) -> bool:
         """Create a new user"""
         try:
             conn = self.get_connection()
             cursor = conn.cursor()
             password_hash = self.hash_password(password)
             cursor.execute(
-                "INSERT INTO users (username, password_hash, role, company_id, mobile_number) VALUES (?, ?, ?, ?, ?)",
-                (username, password_hash, role, company_id, mobile_number)
+                "INSERT INTO users (username, password_hash, role, company_id) VALUES (?, ?, ?, ?)",
+                (username, password_hash, role, company_id)
             )
             conn.commit()
             conn.close()

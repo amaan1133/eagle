@@ -34,11 +34,11 @@ class TaskManager:
             return False
         return self.db.create_company(name)
     
-    def create_user(self, username: str, password: str, role: str, company_id: int, mobile_number: str = None) -> bool:
+    def create_user(self, username: str, password: str, role: str, company_id: int) -> bool:
         """Create a new user (Admin only)"""
         if not self.current_user or self.current_user['role'] != 'Admin':
             return False
-        return self.db.create_user(username, password, role, company_id, mobile_number)
+        return self.db.create_user(username, password, role, company_id)
     
     def assign_task(self, title: str, description: str, assigned_to: int, 
                    start_date: str = None, deadline: str = None, priority: str = 'Medium') -> bool:

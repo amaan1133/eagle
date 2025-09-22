@@ -32,14 +32,14 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 active_users = {}
 
 def send_telegram_notification(user_id, message):
-    """Send Telegram notification to user using their mobile number as chat_id"""
+    """Send Telegram notification to user using their telegram_chat_id"""
     try:
         db = Database()
         conn = db.get_connection()
         cursor = conn.cursor()
 
-        # Get user's mobile number and telegram_chat_id
-        cursor.execute("SELECT mobile_number, telegram_chat_id, username FROM users WHERE id = ?", (user_id,))
+        # Get user's telegram_chat_id and username
+        cursor.execute("SELECT telegram_chat_id, username FROM users WHERE id = ?", (user_id,))
         result = cursor.fetchone()
         conn.close()
 
@@ -47,56 +47,36 @@ def send_telegram_notification(user_id, message):
             print(f"⚠️ User not found for user_id: {user_id}")
             return False
 
-        mobile_number, telegram_chat_id, username = result
+        telegram_chat_id, username = result
+        
+        if not telegram_chat_id:
+            print(f"⚠️ No Chat ID configured for user: {username}. User needs to set up Chat ID in settings.")
+            return False
         
         bot_token = "7653297508:AAE_sfu893LJ-D5Z5xtr_sjy-XEJvvf7haQ"
-        bot_username = "taskmanager_eagle_bot"  # Bot ka username
-        
-        # Primary strategy: Use mobile number as chat_id
-        chat_id = mobile_number if mobile_number else telegram_chat_id
-        
-        if not chat_id:
-            chat_id = "5776427389"  # Fallback
-            print(f"⚠️ Using fallback chat_id for user: {username}")
+        bot_username = "taskmanager_eagle_bot"
 
         url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
         
-        # Create a message with bot start instructions
-        bot_start_link = f"https://t.me/{bot_username}?start=activate"
-        notification_text = f"🦅 *Eagle Task Manager*\n\n*Task Notification for:* {username}\n*Mobile:* {mobile_number}\n\n*Message:* {message}\n\n📱 *To receive direct notifications:*\n👆 Click here: {bot_start_link}\nOr search @{bot_username} on Telegram and type /start"
+        # Create a clean notification message
+        notification_text = f"🦅 *Eagle Task Manager*\n\n*Task Notification for:* {username}\n\n*Message:* {message}"
         
         data = {
-            'chat_id': chat_id,
+            'chat_id': telegram_chat_id,
             'text': notification_text,
             'parse_mode': 'Markdown'
         }
 
-        print(f"📤 Sending Telegram notification to {username} (chat_id: {chat_id})")
+        print(f"📤 Sending Telegram notification to {username} (chat_id: {telegram_chat_id})")
         response = requests.post(url, data=data, timeout=10)
 
         if response.status_code == 200:
             print(f"✅ Telegram notification sent successfully to {username}")
-            
-            # Also try to send a setup message to the user's number
-            if mobile_number and mobile_number != "5776427389":
-                send_bot_setup_message(mobile_number, username, bot_token, bot_username)
-            
             return True
         else:
             error_data = response.json() if response.headers.get('content-type') == 'application/json' else response.text
             print(f"❌ Failed to send Telegram notification to {username}")
             print(f"Error: {error_data}")
-            
-            # If failed with mobile number, try with fallback chat_id
-            if chat_id != "5776427389":
-                print(f"🔄 Mobile number {mobile_number} failed, trying fallback chat_id...")
-                data['chat_id'] = "5776427389"
-                data['text'] = f"🦅 *Eagle Task Manager*\n\n*User:* {username} (Mobile: {mobile_number})\n*Message:* {message}\n\n⚠️ *Setup Required:* User needs to start bot @{bot_username} to receive direct notifications"
-                retry_response = requests.post(url, data=data, timeout=10)
-                if retry_response.status_code == 200:
-                    print(f"✅ Notification sent using fallback chat_id for {username}")
-                    return True
-            
             return False
 
     except Exception as e:
@@ -244,7 +224,7 @@ def create_user():
             return jsonify({'success': False, 'message': 'No data provided'})
 
         # Validate required fields
-        required_fields = ['username', 'mobile_number', 'password', 'role', 'company_id']
+        required_fields = ['username', 'password', 'role', 'company_id']
         for field in required_fields:
             if field not in data or not data[field]:
                 return jsonify({'success': False, 'message': f'Missing required field: {field}'})
@@ -261,8 +241,7 @@ def create_user():
             data['username'],
             data['password'],
             data['role'],
-            int(data['company_id']),
-            data['mobile_number']
+            int(data['company_id'])
         )
 
         if success:

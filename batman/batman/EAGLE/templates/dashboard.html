@@ -515,11 +515,6 @@
                         <input type="text" class="form-control" id="user-username" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Mobile Number</label>
-                        <input type="tel" class="form-control" id="user-mobile-number" placeholder="Enter mobile number for Telegram notifications" required>
-                        <small class="text-muted">This will be used for Telegram notifications</small>
-                    </div>
-                    <div class="mb-3">
                         <label class="form-label">Password</label>
                         <input type="password" class="form-control" id="user-password" required>
                     </div>
@@ -1237,7 +1232,6 @@
                                         <div class="mt-1">
                                             <span class="badge bg-${getRoleBadgeColor(user.role)}">${user.role}</span>
                                             <small class="text-muted ms-2">${user.company_name}</small>
-                                            ${user.mobile_number ? `<br><small class="text-muted"><i class="fas fa-phone"></i> ${user.mobile_number}</small>` : ''}
                                         </div>
                                     </div>
                                     <div class="text-end">
@@ -1697,12 +1691,11 @@
     
     async function createUser() {
         const username = document.getElementById('user-username').value;
-        const mobile_number = document.getElementById('user-mobile-number').value;
         const password = document.getElementById('user-password').value;
         const role = document.getElementById('user-role').value;
         const company_id = document.getElementById('user-company').value;
         
-        if (!username || !mobile_number || !password || !role || !company_id) {
+        if (!username || !password || !role || !company_id) {
             alert('Please fill in all fields');
             return;
         }
@@ -1713,7 +1706,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, mobile_number, password, role, company_id: parseInt(company_id) })
+                body: JSON.stringify({ username, password, role, company_id: parseInt(company_id) })
             });
             
             if (!response.ok) {
