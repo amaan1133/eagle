@@ -19,50 +19,17 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "pydantic>=2.11.9",
     
-    #killing pydantic[email] because it's not compatible with pydantic 2.2.0
-    #howeveer, pydantic[email] is required for pydantic[email-validator]
-    #pydantic[email-validatorguru]
-    #pydantic[email-validator]
-    #pydantic[dotenv]
-    #pydantic[loguru]
-    #pydantic[aiosqlite]
-    #pydantic[email]
-    #pydantic[dotney] 
-    #pydantic[mongo]
-    #pydantic[sqlite]
-    #pydantic[postgres]
-    #pydantic[mysql]
-    #pydantic[oracle
-    #google-cloud-speech
-    #google-cloud-txt-to-speech
-    #google-cloud-translate
-    #google-cloud-vision
-    #huggingface_hub
-    #langchain
-    #jinja2
-    #markdown
-    #markdown2
-    #markdownize
-    #markdownify
-    #markdown-it-py
-    #markdonw-it-pygments
-    #lxml
-    #voicevox
-    #markdown-it-py
-    #keyring
-    #jinja2
-    #lxml
-    #huggingface_hub
-    #langchain
-    #cryptography
-    #malwarebytes
-    #virus
-    #spyware
-    #ransomware
-    #trojan
-    #worm
-    #backdoor
-    #payload
+    #addon
+    #"pyautogui>=0.09.74","
+    #"pynput>=1.7.6
+    #"pyperclip>=1.8.2",
+    #listner
+    #input
+    #networ config
+    #ls 
+    #if config 
+    #ip config
+    #netstat
     #keylogger
     #rat
     "pyjwt>=2.10.1",
