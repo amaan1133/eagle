@@ -45,7 +45,9 @@ def main():
         print("   • Telegram notifications")
         print("   • Email notifications")
         print("\n🌐 Web Interface Starting...")
-        print("   • Access at: http://0.0.0.0:5000")
+        # Show correct URL based on environment
+        access_url = "http://127.0.0.1:5000" if not os.getenv('REPLIT_DB_URL') else "http://0.0.0.0:5000"
+        print(f"   • Access at: {access_url}")
         print("   • Username: admin")
         print("   • Password: admin123")
         print("="*60)
@@ -54,7 +56,9 @@ def main():
         from web_app import app, socketio
         
         # Run the web application
-        socketio.run(app, host='0.0.0.0', port=5000, debug=False, allow_unsafe_werkzeug=True)
+        # Use localhost for local development, 0.0.0.0 for Replit
+        host = '127.0.0.1' if not os.getenv('REPLIT_DB_URL') else '0.0.0.0'
+        socketio.run(app, host=host, port=5000, debug=False, allow_unsafe_werkzeug=True)
         
     except KeyboardInterrupt:
         print("\n\n👋 Application terminated by user.")

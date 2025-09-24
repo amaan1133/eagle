@@ -1000,4 +1000,6 @@ def send_notification(user_id, message):
         print(f"Error in send_notification: {e}")
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    # Use localhost for local development, 0.0.0.0 for Replit
+    host = '127.0.0.1' if not os.getenv('REPLIT_DB_URL') else '0.0.0.0'
+    socketio.run(app, host=host, port=5000, debug=True)
