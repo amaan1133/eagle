@@ -2,7 +2,7 @@ modules = ["python-3.11", "nodejs-20"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["cargo", "libiconv", "rustc", "android-tools", "openjdk"]
+packages = ["android-tools", "cargo", "libiconv", "openjdk", "rustc"]
 
 [workflows]
 runButton = "Project"

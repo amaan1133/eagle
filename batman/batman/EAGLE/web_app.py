@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for, send_from_directory
 from flask_socketio import SocketIO, emit, join_room, leave_room
+from flask_cors import CORS
 from task_manager import TaskManager
 from database import Database
 import json
@@ -14,6 +15,7 @@ import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key-change-this'
+CORS(app, supports_credentials=True)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
