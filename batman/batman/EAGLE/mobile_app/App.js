@@ -12,7 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-const API_BASE_URL = 'https://your-repl-name-username.replit.app';
+const API_BASE_URL = 'https://batman-batman-eagle.replit.app';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
