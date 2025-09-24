@@ -1,35 +1,23 @@
 
 #!/usr/bin/env python3
 """
-Task Management System
-A CLI-based task management application with role-based access control
+Eagle Task Management System - Web Application Only
 """
-#import os 
-#import sys
- #sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))
-#initializing the path to the parent directory of the current file 
-#os.path.dirname(__file__) gets the directory name of the current file 
-#then os.path.abspath() gets the absolute path of that directory
-#kill the  process and restart the application 
-#tm.db.kill_process()
-#os.system('python3 main.py')
-#operatorreload module os used to reload the model
 
-
-from cli_interface import CLIInterface
-from task_manager import TaskManager
+from database import Database
 import sys
+import os
 
 def setup_initial_data():
     """Setup initial admin user and sample company""" 
-    tm = TaskManager()
+    db = Database()
     
     # Create a sample company
-    if tm.db.create_company("TechCorp"):
+    if db.create_company("TechCorp"):
         print("✅ Created sample company: TechCorp")
     
     # Create initial admin user
-    if tm.db.create_user("admin", "admin123", "Admin", 1):
+    if db.create_user("admin", "admin123", "Admin", 1):
         print("✅ Created initial admin user")
         print("   Username: admin")
         print("   Password: admin123")
@@ -38,31 +26,35 @@ def setup_initial_data():
         print("ℹ️  Admin user already exists")
 
 def main():
-    """Main function"""
-    print("🚀 Initializing Task Management System...")
+    """Main function - starts web application directly"""
+    print("🚀 Starting Eagle Task Management System...")
     
     try:
         # Setup initial data
         setup_initial_data()
         
         print("\n" + "="*60)
-        print("TASK MANAGEMENT SYSTEM")
+        print("EAGLE TASK MANAGEMENT SYSTEM")
         print("="*60)
         print("📋 Features:")
-        print("   • Multi-company support (up to 7 companies)")
-        print("   • Role-based access control (Admin, Manager, Employee)")
-        print("   • Task assignment and status tracking")
-        print("   • Company data isolation")
-        print("\n🔑 Initial Login Credentials:")
-        print("   Username: admin")
-        print("   Password: admin123")
+        print("   • Multi-company support")
+        print("   • Role-based access control")
+        print("   • Task assignment and tracking")
+        print("   • Real-time messaging")
+        print("   • File attachments")
+        print("   • Telegram notifications")
+        print("   • Email notifications")
+        print("\n🌐 Web Interface Starting...")
+        print("   • Access at: http://0.0.0.0:5000")
+        print("   • Username: admin")
+        print("   • Password: admin123")
         print("="*60)
         
-        input("\nPress Enter to start the application...")
+        # Import and start web app
+        from web_app import app, socketio
         
-        # Start the CLI interface
-        cli = CLIInterface()
-        cli.run()
+        # Run the web application
+        socketio.run(app, host='0.0.0.0', port=5000, debug=False, allow_unsafe_werkzeug=True)
         
     except KeyboardInterrupt:
         print("\n\n👋 Application terminated by user.")

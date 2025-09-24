@@ -5,7 +5,7 @@ channel = "stable-25_05"
 packages = ["android-tools", "cargo", "libiconv", "openjdk", "rustc"]
 
 [workflows]
-runButton = "Project"
+runButton = "Start Task Manager"
 
 [[workflows.workflow]]
 name = "Project"
@@ -27,6 +27,15 @@ waitForPort = 5000
 
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[[workflows.workflow]]
+name = "Start Task Manager"
+author = 47869978
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /home/runner/workspace/batman/batman/EAGLE && python main.py"
 
 [[ports]]
 localPort = 5000
