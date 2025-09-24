@@ -1,0 +1,22 @@
+all your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+t=2025-09-24T12:43:11+0530 lvl=eror msg="session closing" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+t=2025-09-24T12:43:11+0530 lvl=eror msg="terminating with error" obj=app err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+t=2025-09-24T12:43:11+0530 lvl=crit msg="command failed" err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+t=2025-09-24T12:43:11+0530 lvl=warn msg="failed to check for update" obj=updater err="Post \"https://update.equinox.io/check\": context canceled"
+Traceback (most recent call last):
+  File "<python-input-0>", line 4, in <module>
+    public_url = ngrok.connect(5000)
+  File "C:\Users\acer\AppData\Local\Programs\Python\Python313\Lib\site-packages\pyngrok\ngrok.py", line 387, in connect
+    api_url = get_ngrok_process(pyngrok_config).api_url
+              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Local\Programs\Python\Python313\Lib\site-packages\pyngrok\ngrok.py", line 203, in get_ngrok_process
+    return process.get_process(pyngrok_config)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Local\Programs\Python\Python313\Lib\site-packages\pyngrok\process.py", line 271, in get_process
+    return _start_process(pyngrok_config)
+  File "C:\Users\acer\AppData\Local\Programs\Python\Python313\Lib\site-packages\pyngrok\process.py", line 447, in _start_process
+    raise PyngrokNgrokError(f"The ngrok process errored on start: {ngrok_process.startup_error}.",
+                            ngrok_process.logs,
+                            ngrok_process.startup_error)
+pyngrok.exception.PyngrokNgrokError: The ngrok process errored on start: authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n.
+>>>
