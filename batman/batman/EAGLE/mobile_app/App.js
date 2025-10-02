@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
-  SafeAreaView,
+  SafeAreaView
   StatusBar,
   Modal,
 } from 'react-native';
