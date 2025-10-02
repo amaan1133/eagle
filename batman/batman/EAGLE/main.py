@@ -14,16 +14,16 @@ def setup_initial_data():
     
     # Create a sample company
     if db.create_company("TechCorp"):
-        print("✅ Created sample company: TechCorp")
+        print(" Created sample company: TechCorp")
     
     # Create initial admin user
     if db.create_user("admin", "admin123", "Admin", 1):
-        print("✅ Created initial admin user")
+        print(" Created initial admin user")
         print("   Username: admin")
         print("   Password: admin123")
         print("   Role: Admin")
     else:
-        print("ℹ️  Admin user already exists")
+        print("  Admin user already exists")
 
 def main():
     """Main function - starts web application directly"""
@@ -36,7 +36,7 @@ def main():
         print("\n" + "="*60)
         print("EAGLE TASK MANAGEMENT SYSTEM")
         print("="*60)
-        print("📋 Features:")
+        print(" Features:")
         print("   • Multi-company support")
         print("   • Role-based access control")
         print("   • Task assignment and tracking")
@@ -44,7 +44,7 @@ def main():
         print("   • File attachments")
         print("   • Telegram notifications")
         print("   • Email notifications")
-        print("\n🌐 Web Interface Starting...")
+        print("\n Web Interface Starting...")
         # Show correct URL based on environment
         access_url = "http://127.0.0.1:5000" if not os.getenv('REPLIT_DB_URL') else "http://0.0.0.0:5000"
         print(f"   • Access at: {access_url}")
@@ -61,10 +61,10 @@ def main():
         socketio.run(app, host=host, port=5000, debug=False, allow_unsafe_werkzeug=True)
         
     except KeyboardInterrupt:
-        print("\n\n👋 Application terminated by user.")
+        print("\n\n Application terminated by user.")
         sys.exit(0)
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
