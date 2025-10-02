@@ -18,7 +18,7 @@ args = "web_server"
 
 [[workflows.workflow]]
 name = "web_server"
-author = "agent"
+author = "amaan"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
