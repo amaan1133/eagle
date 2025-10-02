@@ -882,15 +882,15 @@ class Database:
                     conn.close()
                     return False
                 
-                # Delete user's comments
+             
                 cursor.execute("DELETE FROM task_comments WHERE user_id = ?", (user_id,))
                 
-                # Delete user's messages
+               
                 cursor.execute("DELETE FROM messages WHERE user_id = ?", (user_id,))
                 cursor.execute("DELETE FROM private_messages WHERE sender_id = ? OR receiver_id = ?", 
                              (user_id, user_id))
                 
-                # Delete user's subscriptions
+                
                 cursor.execute("DELETE FROM push_subscriptions WHERE user_id = ?", (user_id,))
                 
                 # Delete user's notifications
@@ -1259,4 +1259,4 @@ class Database:
             return None
 
     def __del__(self):
-        pass  # Connection handling is done per method now
+        pass  
