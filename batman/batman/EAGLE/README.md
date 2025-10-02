@@ -1,33 +1,31 @@
 
-# Task Management System
+Task Management System
 
 A comprehensive CLI-based Task Management System built with Python and SQLite3, featuring multi-company support and role-based access control.
 
-## Features
-
-### 🏢 Multi-Company Support
+ Multi-Company Support
 - Supports up to 7 companies with complete data isolation
 - Each company manages its own users and tasks independently
 
-### 👥 Role-Based Access Control
+ Role-Based Access Control
 - **Admin**: Can register companies, create users, assign tasks, and view all tasks
 - **Manager**: Can view and update status of assigned tasks
 - **Employee**: Can view and update status of assigned tasks
 
-### 📋 Task Management
+ Task Management
 - Create tasks with title, description, and assignment
 - Track task status: Pending, In Progress, Completed
 - Automatic timestamp tracking (created_at, updated_at)
 - Task statistics and reporting
 
-### 🔐 Security
+ Security
 - Password hashing using SHA256
 - User authentication and session management
 - Role-based permission enforcement
 
-## Quick Start
+ Quick Start
 
-### 1. Run the Application
+ Run the Application
 ```bash
 python main.py
 ```
@@ -41,19 +39,9 @@ python main.py
 python setup_sample_data.py
 ```
 
-## File Structure
 
-```
-├── main.py                 # Application entry point
-├── database.py            # Database schema and operations
-├── task_manager.py        # Core business logic
-├── cli_interface.py       # Command-line interface
-├── setup_sample_data.py   # Sample data setup script
-├── README.md              # This file
-└── task_management.db     # SQLite database (created automatically)
-```
 
-## Database Schema
+
 
 ### Companies Table
 - `id` (Primary Key)
@@ -100,13 +88,13 @@ After running `setup_sample_data.py`, you can login with:
 - **Employee**: `alice_emp_techcorp` / `pass123`
 - **Employee**: `bob_emp_techcorp` / `pass123`
 
-## Technical Requirements
+ Technical Requirements
 
 - Python 3.6+
 - SQLite3 (included with Python)
 - No external dependencies required
 
-## Design Principles
+ Design Principles
 
 - **Clean Code**: Well-structured, readable Python code
 - **Data Isolation**: Complete separation between company data
@@ -114,7 +102,7 @@ After running `setup_sample_data.py`, you can login with:
 - **User-Friendly**: Intuitive CLI interface with clear navigation
 - **Robust**: Error handling and input validation throughout
 
-## Future Enhancements
+ Future Enhancements
 
 - Web interface using Flask/FastAPI
 - Task priorities and due dates
