@@ -6,7 +6,7 @@ runButton = "Task Management"
 [[workflows.workflow]]
 name = "Project"
 mode = "parallel"
-author = "agent"
+author = "amaan"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
@@ -14,7 +14,7 @@ args = "Eagle Task Management"
 
 [[workflows.workflow]]
 name = "Eagle Task Management"
-author = "agent"
+author = "amaan"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
