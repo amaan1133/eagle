@@ -75,16 +75,16 @@ def send_telegram_notification(user_id, message):
         response = requests.post(url, data=data, timeout=10)
 
         if response.status_code == 200:
-            print(f"✅ Telegram notification sent successfully to {username}")
+            print(f" Telegram notification sent successfully to {username}")
             return True
         else:
             error_data = response.json() if response.headers.get('content-type') == 'application/json' else response.text
-            print(f"❌ Failed to send Telegram notification to {username}")
+            print(f" Failed to send Telegram notification to {username}")
             print(f"Error: {error_data}")
             return False
 
     except Exception as e:
-        print(f"💥 Error sending Telegram notification: {e}")
+        print(f" Error sending Telegram notification: {e}")
         return False
 
 def send_bot_setup_message(mobile_number, username, bot_token, bot_username):
@@ -93,7 +93,7 @@ def send_bot_setup_message(mobile_number, username, bot_token, bot_username):
         url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
         bot_start_link = f"https://t.me/{bot_username}?start=user_{mobile_number}"
         
-        setup_message = f"🤖 *Eagle Task Manager Bot Setup*\n\nHi {username}!\n\n📲 To receive task notifications directly on your phone:\n\n1️⃣ Click this link: {bot_start_link}\n2️⃣ Or search @{bot_username} on Telegram\n3️⃣ Type /start to activate notifications\n\n✅ Once activated, you'll receive all task notifications directly!"
+        setup_message = f" *Eagle Task Manager Bot Setup*\n\nHi {username}!\n\n📲 To receive task notifications directly on your phone:\n\n1️⃣ Click this link: {bot_start_link}\n2️⃣ Or search @{bot_username} on Telegram\n3️⃣ Type /start to activate notifications\n\n✅ Once activated, you'll receive all task notifications directly!"
         
         data = {
             'chat_id': mobile_number,
